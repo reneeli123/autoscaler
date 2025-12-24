@@ -164,6 +164,7 @@ func (vmPool *VMPool) IncreaseSize(delta int) error {
 		header := make(http.Header)
 		header.Set("Target-Count", fmt.Sprintf("%d", count))
 		header.Set("SKU", fmt.Sprintf("%s", vmPool.sku))
+		header.Set("X-Target-Service", vmPool.manager.config.TargetServiceForAPClient)
 		updateCtx = policy.WithHTTPHeader(updateCtx, header)
 	}
 
